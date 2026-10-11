@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第二层 · some-news</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: #0d1117; color: #e6edf3;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: #161b22; border: 1px solid #30363d; border-radius: 16px;
+    padding: 40px 36px; max-width: 500px; width: 100%; text-align: center;
+  }
+  .badge {
+    display: inline-block; font-size: 12px; color: #7F77DD;
+    border: 1px solid #7F77DD; border-radius: 999px; padding: 4px 12px; margin-bottom: 16px;
+  }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 14px; }
+  .intro { color: #c9d1d9; font-size: 15px; line-height: 1.7; margin-bottom: 22px; }
+  .riddle {
+    background: #0d1117; border: 1px dashed #30363d; border-radius: 10px;
+    padding: 18px; font-size: 15px; line-height: 1.8; margin-bottom: 20px; color: #e6edf3;
+  }
+  .riddle b { color: #7F77DD; font-size: 17px; }
+  input {
+    width: 100%; padding: 12px 14px; font-size: 15px; text-align: center;
+    background: #0d1117; color: #e6edf3; border: 1px solid #30363d;
+    border-radius: 8px; outline: none; margin-bottom: 12px;
+  }
+  input:focus { border-color: #7F77DD; }
+  .msg { font-size: 13px; min-height: 18px; margin-bottom: 14px; }
+  .msg.ok { color: #3fb950; }
+  .msg.no { color: #f85149; }
+  .btn {
+    display: inline-block; background: #238636; color: #fff; text-decoration: none;
+    font-size: 14px; padding: 10px 20px; border-radius: 8px; margin: 6px 6px 0;
+  }
+  .btn.ghost { background: transparent; border: 1px solid #30363d; color: #c9d1d9; }
+  .btn:hover { filter: brightness(1.15); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">第 2 / 3 层</div>
+    <h1>第二层</h1>
+    <p class="intro">信号更清楚了。它说：<br><i>“把上一层的答案，倒过来写，就是这扇门的密码。”</i></p>
+    <p class="riddle">谜题 2：<br>上一层答案是 <b>13</b>。<br>把它倒过来写，得到？</p>
+    <input id="ans" placeholder="在这里输入答案（数字）" autocomplete="off">
+    <p id="msg" class="msg"></p>
+    <a id="next" class="btn" href="final.html" style="display:none">终点 →</a>
+    <a class="btn ghost" href="index.html">← 返回主页</a>
+  </div>
+  <script>
+    // 答案提示（也藏在源码里）：13 倒过来是 31
+    const input = document.getElementById('ans');
+    const msg = document.getElementById('msg');
+    const next = document.getElementById('next');
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+    function check() {
+      const v = input.value.trim();
+      if (v === '31') {
+        msg.textContent = '门开了！'; msg.className = 'msg ok';
+        next.style.display = 'inline-block';
+      } else {
+        msg.textContent = '门没动……把 13 整串反过来试试'; msg.className = 'msg no';
+      }
+    }
+  </script>
+</body>
+</html>
